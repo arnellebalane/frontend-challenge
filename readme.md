@@ -7,3 +7,4 @@ Output implementation for [@uncaughtxcptn](https://github.com/uncaughtxcptn) fro
 
 - https://fc002.arnelle.me/
 - https://fc003.arnelle.me/
+- https://fc004.arnelle.me/
