@@ -1,0 +1,498 @@
+/* RESET */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+:root {
+    --primary-color: #ffd502;
+    --primary-bgcolor: #222;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    display: grid;
+    /*
+     *  `minmax()` here makes the grid columns not grow even though the
+     *  contents are already wider then the column's available space.
+     */
+    grid-template-columns: minmax(0, 1fr) minmax(0, 3fr) minmax(0, 1fr);
+    grid-template-rows: 18.4rem auto 28rem;
+    min-height: 100vh;
+
+    font-family: "SF Compact Display", sans-serif;
+    font-size: 1.6rem;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #fff;
+    background-color: var(--primary-bgcolor);
+    background-image: repeating-linear-gradient(
+        to left,
+        transparent,
+        transparent calc(20% - 1px),
+        #393939 calc(20% - 1px),
+        #393939 20%
+    );
+}
+
+a,
+button {
+    font: inherit;
+    color: inherit;
+}
+
+
+
+/* REUSABLE COMPONENTS */
+
+.Category {
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--primary-color);
+}
+
+.Date {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+
+
+/* SITE LOGO */
+
+.SiteLogo {
+    justify-self: center;
+    margin: 6.8rem 0;
+}
+
+.SiteLogo img {
+    display: block;
+    height: 4.8rem;
+}
+
+
+
+/* NAVIGATION MENU */
+
+.Navigation {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    /*
+     *  Padding needs to visually look the same as the padding between the edge
+     *  of ActionMenu and the first icon/last icon image.
+     *
+     *  This calculates the left/right padding of the ActionMenu element:
+     *
+     *  - The ActionMenu column is `20vw` wide.
+     *  - It contains `3` icons, each is `4.8rem` wide, and each has left and
+     *      right margins of `1rem`. This results to a total width of
+     *      `4.8rem * 3 + 4rem` occupied by the ActionMenu icons and the spaces
+     *      between them (we ignore the left margin of the first icon and right
+     *      margin of the last icon).
+     *  - We divide subtract this occupied with from the column's total width
+     *      to get the available unoccupied space, then divide it by `2` to get
+     *      the value for either side.
+     *  - Each icon has a padding of 1.2rem. We need to include the left
+     *      padding of the first icon and the right padding of the last icon,
+     *      so we add `2.4rem` to the total padding.
+     *  - `2.2rem` stands for the right padding of the last navigation item.
+     */
+    padding: 0 calc(
+        (20vw - (4.8rem * 3 + 4rem)) / 2
+        + 2.4rem
+        - 2.2rem
+    );
+}
+
+.Navigation__Item {
+    padding: 0 2.2rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    line-height: 4.8rem;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.Navigation__Item:hover,
+.Navigation__Item:focus {
+    color: var(--primary-bgcolor);
+    background-color: var(--primary-color);
+}
+
+
+
+/* ACTION MENU */
+
+.ActionMenu {
+    grid-row-end: span 2;
+    display: flex;
+    justify-content: center;
+    padding: 6.8rem 0;
+    background-color: var(--primary-color);
+}
+
+.ActionMenu__Item {
+    width: 4.8rem;
+    height: 4.8rem;
+    border: 0;
+    margin: 0 1rem;
+    font-size: 0;
+    background: transparent 0 center no-repeat;
+    cursor: pointer;
+}
+
+.ActionMenu__Item:hover,
+.ActionMenu__Item:focus {
+    background-color: var(--primary-bgcolor);
+    background-position-x: -4.8rem;
+}
+
+.ActionMenu__Item--search {
+    background-image: url("images/search.svg");
+}
+
+.ActionMenu__Item--email {
+    background-image: url("images/email.svg");
+}
+
+.ActionMenu__Item--misc {
+    background-image: url("images/menu.svg");
+}
+
+
+
+/* ARTICLE INFO */
+
+.Article {
+    align-self: center;
+    width: 50vw;
+    /*
+     *  Padding needs to align with the site logo.
+     *
+     *  - The site logo is `16.4rem` wide.
+     *  - The grid column containing the logo is `20vw` wide.
+     *  - `20vw - 16.4rem` gives us the total available space that's not
+     *      occupied by the site logo.
+     *  - We divide this value by 2 to get the width of the space in
+     *      either side.
+     */
+    padding: 0 calc((20vw - 16.4rem) / 2);
+    position: relative;
+    z-index: 1;
+}
+
+.Article__Title {
+    margin-top: 2rem;
+    margin-bottom: 8rem;
+    font-size: 3rem;
+    font-weight: 600;
+}
+
+/*
+ *  Using the CSS Locks technique to scale the article title's font size
+ *  linearly based on the viewport width.
+ *  >> https://fvsch.com/css-locks/
+ *
+ *  y = mx + b
+ *  m = (6.8rem - 3rem) / (1920px - 1200px)
+ *  b = y - mx
+ *    = 3rem - m * 1200px
+ *  y -> corresponds to the font size
+ *  x -> corresponds to the viewport width
+ */
+
+@media (min-width: 1200px) {
+    .Article__Title {
+        --m: calc(38 / 720);
+        --b: calc(30 - var(--m) * 1200);
+        font-size: calc(var(--m) * 100vw + var(--b) * 1px);
+    }
+}
+
+@media (min-width: 1920px) {
+    .Article__Title {
+        font-size: 6.8rem;
+    }
+}
+
+.Article__Author {
+    float: left;
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.Article__Author__Image {
+    display: block;
+    width: 5.4rem;
+    height: 5.4rem;
+    object-fit: cover;
+    object-position: center center;
+    border-radius: 50%;
+    margin-right: 3.6rem;
+}
+
+.Article__Author__Name {
+    margin-bottom: 8px;
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+.Article__Date {
+    font-size: 1.6rem;
+    color: rgba(255, 255, 255, 0.25);
+}
+
+.Article__Link {
+    float: right;
+    display: flex;
+    align-items: center;
+    padding: 0 3.6rem;
+    border: 2px solid var(--primary-color);
+    margin-left: 1.6rem;
+    /*
+     *  The triangle in the "See Article" link needs to align with the edge of
+     *  the article image's border.
+     *
+     *  - `10vw - (20vw - 16.4rem) / 2` properly aligns the right edge of the
+     *      link to the end of the second grid column.
+     *      - `(20vw - 16.4rem) / 2` is the Article element's right padding,
+     *          see computation in the .Article rule above.
+     *      - `10vw` is the the difference between the Article's width (50vw)
+     *          and the second column's right offset (40vw).
+     *  - `(20vw - (4.8rem * 3 + 4rem)) / 2 + 2.4rem` is the space between the
+     *      right edge of the image to the right edge of the screen.
+     *  - `1rem` is the thickness of the image's border.
+     *  - `2.6rem` aligns the triangle with the image's border. This is derived
+     *      from the link's right padding (3.6rem) and its border (2px/0.2rem), 
+     *      and the image container's border thickness (1rem).
+     */
+    margin-right: calc(
+        10vw - (20vw - 16.4rem) / 2
+        + (20vw - (4.8rem * 3 + 4rem)) / 2 + 2.4rem
+        - 1rem
+        - 2.8rem
+    );
+    font-size: 1.6rem;
+    font-weight: 600;
+    line-height: 6rem;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.Article__Link:hover,
+.Article__Link:focus {
+    color: var(--primary-bgcolor);
+    background-color: var(--primary-color);
+}
+
+.Article__Link::after {
+    content: "";
+    border-left: 8px solid var(--primary-color);
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    margin-left: 3rem;
+    transform: translateX(0);
+    transition: transform 200ms ease;
+}
+
+.Article__Link:hover::after,
+.Article__Link:focus::after {
+    border-left-color: var(--primary-bgcolor);
+    transform: translateX(1rem);
+}
+
+.Article__Image {
+    padding: 1rem;
+    padding-top: 0;
+    background-image: linear-gradient(
+        to top,
+        var(--primary-color),
+        var(--primary-color) 11rem,
+        transparent 11rem,
+        transparent 100%
+    );
+    /*
+     *  The right edge of the article image needs to align with the last icon
+     *  image in ActionMenu.
+     *
+     *  - The total width of the 3 icons and the spaces between them is
+     *      `4.8rem * 3 + 4rem`.
+     *  - The ActionMenu grid column is `20vw` wide, minus the total icons
+     *      width results to the width of unoccupied space. Divide by `2` to
+     *      get only the unoccupied width on the left side.
+     *  - Each icon has a padding of 1.2rem. We subtract the first icon's left
+     *      padding and the last icon's right padding, a total of `2.4rem`,
+     *      from the results.
+     */
+    --total-icons-width: calc(4.8rem * 3 + 4rem);
+    --image-translate: calc(
+        var(--total-icons-width)
+        + (20vw - var(--total-icons-width)) / 2
+        - 2.4rem
+    );
+    transform: translateX(var(--image-translate));
+}
+
+.Article__Image img {
+    display: block;
+    width: calc(100% + 2rem);
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+}
+
+
+
+/* SCROLL DOWN TEXT */
+
+.ScrollDown {
+    align-self: center;
+    display: flex;
+    /*
+     *  Padding needs to align with the site logo.
+     *
+     *  - The site logo is `16.4rem` wide.
+     *  - The grid column containing the logo is `20vw` wide.
+     *  - `20vw - 16.4rem` gives us the total available space that's not
+     *      occupied by the site logo.
+     *  - We divide this value by 2 to get the width of the space in
+     *      either side.
+     */
+    padding: 0 calc((20vw - 16.4rem) / 2);
+}
+
+.ScrollDown__Text {
+    font-size: 1.6rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    transform: rotate(-90deg) translate(-50%, 50%);
+    transform-origin: left center;
+}
+
+.ScrollDown__Text::before {
+    content: "";
+    display: inline-block;
+    border-right: 8px solid var(--primary-color);
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    margin-right: 3rem;
+}
+
+
+
+/* OTHER ARTICLES */
+
+.OtherArticles {
+    grid-column-end: span 2;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 4fr));
+}
+
+.OtherArticle {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 4.6rem 6rem;
+    padding-top: 14rem;
+    position: relative;
+    text-decoration: none;
+}
+
+.OtherArticle__Image {
+    position: absolute;
+    top:0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.OtherArticle__Image::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.35);
+}
+
+.OtherArticle__Image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    transition: transform 250ms ease-out;
+}
+
+.OtherArticle:hover .OtherArticle__Image img,
+.OtherArticle:focus .OtherArticle__Image img {
+    transform: scale(1.05);
+}
+
+.OtherArticle__Meta {
+    display: flex;
+    margin-bottom: 2.8rem;
+}
+
+.OtherArticle__Category {
+    margin-right: 2.8rem;
+}
+
+.OtherArticle__Title {
+    width: 100%;
+    font-size: 2.2rem;
+
+    /*
+     *  Add ellipsis to the text if it goes beyond two lines. Currently Webkit-only.
+     *  >> https://css-tricks.com/almanac/properties/l/line-clamp/
+     */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+
+
+
+/* OTHER ARTICLES NUMBERS */
+
+.ArticleNumbers {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+}
+
+.ArticleNumber--current {
+    margin-right: 3.2rem;
+    font-size: 5.2rem;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.ArticleNumber--next {
+    padding-bottom: 0.3em;
+    margin-bottom: 0.2em;
+    font-size: 2.6rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 3px solid #666;
+}
+
+.ArticleNumber--next:hover,
+.ArticleNumber--next:focus {
+    border-bottom-color: var(--primary-color);
+}
