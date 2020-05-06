@@ -1,0 +1,52 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+:root {
+  --primary-color: hsl(243, 100%, 69%);
+  --primary-color-opacity: hsla(243, 100%, 69%, 15%);
+  --accent-color: hsl(348, 100%, 70%);
+  --body-color: hsl(243, 17%, 22%);
+  --page-bg-color: hsl(231, 16%, 91%);
+}
+
+body {
+  font-family: 'Product Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--body-color);
+  background-color: var(--page-bg-color);
+}
+
+section {
+  border-radius: 1.25rem;
+}
+
+section > img {
+  min-width: 0;
+}
+
+h1 span {
+  border-radius: 1rem;
+  background-color: var(--primary-color-opacity);
+}
+
+button {
+  background-color: var(--accent-color);
+}
+
+#section-1 button {
+  width: 2.25rem;
+  height: 2.25rem;
+}
+
+#section-2 > div {
+  max-width: 25rem;
+}
+
+#section-2 button {
+  line-height: 36px;
+}
