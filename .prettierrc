@@ -3,15 +3,5 @@
   "useTabs": false,
   "semi": true,
   "singleQuote": true,
-  "printWidth": 120,
-
-  "overrides": [
-    {
-      "files": "*.svelte",
-      "options": {
-        "plugins": ["prettier-plugin-svelte"],
-        "svelteBracketNewLine": true
-      }
-    }
-  ]
+  "printWidth": 120
 }

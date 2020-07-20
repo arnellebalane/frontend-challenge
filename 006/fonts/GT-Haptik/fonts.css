@@ -1,0 +1,48 @@
+@font-face {
+  font-family: 'GT Haptik';
+  font-style: normal;
+  font-weight: 100;
+  src: local('GT Haptik Trial Lazer'), url('./GT-Haptik-Lazer.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'GT Haptik';
+  font-style: normal;
+  font-weight: 200;
+  src: local('GT Haptik Trial Th'), url('./GT-Haptik-Thin.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'GT Haptik';
+  font-style: normal;
+  font-weight: 300;
+  src: local('GT Haptik Trial Lt'), url('./GT-Haptik-Light.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'GT Haptik';
+  font-style: normal;
+  font-weight: 400;
+  src: local('GT Haptik Trial Rg'), url('./GT-Haptik-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'GT Haptik';
+  font-style: normal;
+  font-weight: 500;
+  src: local('GT Haptik Trial Md'), url('./GT-Haptik-medium.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'GT Haptik';
+  font-style: normal;
+  font-weight: 700;
+  src: local('GT Haptik Trial Bl'), url('./GT-Haptik-Bold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'GT Haptik';
+  font-style: normal;
+  font-weight: 100;
+  src: local('GT Haptik Trial Bl'), url('./GT-Haptik-Black.woff2') format('woff2');
+}

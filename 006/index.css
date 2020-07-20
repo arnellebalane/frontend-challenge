@@ -1,0 +1,269 @@
+/* CSS RESET */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+html {
+  --text-color: #191919;
+  --primary-color: #f9f8f6;
+  --header-height: 7.2rem;
+
+  font-size: 62.5%;
+}
+
+body {
+  min-height: 100vh;
+  font-family: 'GT Haptik', sans-serif;
+  font-size: 1.6rem;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.75;
+  color: var(--text-color);
+}
+
+a {
+  font: inherit;
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+}
+
+/* UTILITIES */
+
+.u-Wrapper {
+  max-width: 100rem;
+  margin: 0 auto;
+  padding: 0 2.4rem;
+}
+
+.u-Grid {
+  display: grid;
+  grid-template-columns: 0.4fr 0.6fr;
+  column-gap: 1rem;
+}
+
+.u-Grid > * {
+  min-width: 0;
+}
+
+.u-Grid--half {
+  grid-template-columns: 1fr 1fr;
+  column-gap: 3.6rem;
+}
+
+/* COMPONENTS */
+
+.c-AspectRatio {
+  position: relative;
+}
+
+.c-AspectRatio::before {
+  content: '';
+  display: block;
+  padding-top: 100%;
+}
+
+.c-AspectRatio img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+
+.c-UnderlinedLink {
+  display: inline-block;
+  padding-block: 0.25em;
+  border-block-end: 1px solid currentColor;
+  font-weight: 500;
+}
+
+/* HEADER */
+
+.Header {
+  position: relative;
+  z-index: 10;
+}
+
+.Header .u-Grid {
+  min-height: var(--header-height);
+  align-items: center;
+}
+
+.Header .SiteName {
+  justify-self: start;
+  font-size: 2rem;
+}
+
+.Header .Navigation {
+  justify-self: end;
+}
+
+.Header .Navigation ul {
+  display: flex;
+  padding: 0;
+  list-style: none;
+  font-weight: 500;
+}
+
+.Header .Navigation a {
+  display: block;
+  padding: 4px 1rem;
+  font-size: 1.4rem;
+}
+
+/* SECTIONS */
+
+.Section {
+  padding-block-start: 12rem;
+  padding-block-end: 12rem;
+}
+
+.HeroSection {
+  margin-block-start: calc(var(--header-height) * -1);
+  padding-block-start: calc(var(--header-height) + 8rem);
+  padding-block-end: 0;
+  background-color: var(--primary-color);
+}
+
+.HeroSection__Info {
+  padding-block-start: 12rem;
+  padding-block-end: 12rem;
+}
+
+.HeroSection__Info h1 {
+  margin-block-end: 5.6rem;
+  font-size: 9rem;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.HeroSection__Info p {
+  max-width: 30rem;
+  margin-block-end: 5rem;
+}
+
+.HeroSection .c-AspectRatio::before {
+  padding-top: calc(100% / 0.85);
+}
+
+.JourneySection__Heading {
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+
+.JourneySection__Text--large {
+  font-size: 3.6rem;
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+.JourneySection__Text--small {
+  max-width: 30rem;
+  margin-block-start: 5rem;
+}
+
+.SkillSection {
+  background-color: var(--primary-color);
+}
+
+.SkillSection__List {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.SkillSection__List a {
+  display: block;
+  font-weight: 500;
+  opacity: 0.5;
+  font-size: 1.8rem;
+  line-height: 4rem;
+}
+
+.SkillSection__List .SkillSection__Link--active {
+  opacity: 1;
+}
+
+.SkillSection__Heading {
+  max-width: 48rem;
+  margin-block-end: 5rem;
+  font-size: 2.8rem;
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+.SkillSection__Images {
+  padding: 0;
+  margin: 0;
+  margin-block-end: 3.6rem;
+  list-style: none;
+}
+
+.SkillSection__Images .c-AspectRatio::before {
+  padding-top: calc(100% / 1.78);
+}
+
+.SkillSection__Description {
+  max-width: 48rem;
+  margin-block-end: 3.6rem;
+}
+
+.ProductSection__Heading {
+  max-width: 30rem;
+  font-size: 2.8rem;
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+.ProductSection__Description {
+  max-width: 35rem;
+  justify-self: end;
+  align-self: end;
+}
+
+.ProductSection__Header {
+  margin-block-end: 5rem;
+}
+
+.ProductSection__List {
+  list-style: none;
+}
+
+.ProductCard {
+  background-color: var(--primary-color);
+}
+
+.ProductCard .c-AspectRatio::before {
+  padding-top: calc(100% / 1.33);
+}
+
+.ProductCard__Details {
+  padding: 3.2rem;
+}
+
+.ProductCard__Category {
+  margin-bottom: 2.4rem;
+  font-size: 1.4rem;
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+.ProductCard__Title {
+  margin-bottom: 1.2rem;
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+.ProductCard__Description {
+  margin-bottom: 3.2rem;
+}
