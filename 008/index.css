@@ -1,0 +1,189 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  margin: 0;
+  font-family: 'Google Sans', sans-serif;
+  letter-spacing: -0.5px;
+  font-size: 1.6rem;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #0b0e10;
+
+  cursor: url('images/cursor.svg'), auto;
+}
+
+a {
+  font: inherit;
+  color: inherit;
+}
+
+.Header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 3.6rem 10rem;
+}
+
+.Site__Logo {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+
+  margin: 0;
+}
+
+.Site__Icon {
+  width: 6.4rem;
+  height: 6.4rem;
+  padding: 1.8rem;
+  border: 1px solid #f5f7f9;
+  border-radius: 50%;
+}
+
+.Site__Icon__Image {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.Site__Name {
+  padding: 0.8rem 1.2rem;
+  font-size: 2rem;
+  text-decoration: none;
+}
+
+.Menu {
+  display: flex;
+  gap: 4.8rem;
+}
+
+.Menu__Item {
+  padding: 0.8rem 1.2rem;
+  text-decoration: none;
+}
+
+.Section {
+  padding: 4.8rem 2.4rem;
+}
+
+.Section--hero {
+  max-width: 80rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.Section--hero img {
+  width: 18rem;
+  height: 18rem;
+  border-radius: 50%;
+  background-color: #c9eced;
+}
+
+.Section--hero h1 {
+  font-size: 3.4rem;
+  font-weight: 600;
+}
+
+.Section--hero h2 {
+  font-size: 7.2rem;
+  font-weight: 900;
+}
+
+.Section--hero h2 span {
+  background: url('images/underline.svg') center 110% no-repeat;
+}
+
+.Section--hero p {
+  max-width: 60rem;
+  margin: 0 auto;
+
+  font-size: 2.4rem;
+  line-height: 4.2rem;
+}
+
+.ConnectButton {
+  display: inline-block;
+  padding: 3.2rem 5.4rem;
+  border-radius: 4.8rem;
+  margin-top: 12rem;
+
+  font-size: 1.6rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-decoration: none;
+
+  color: #fff;
+  background-color: #0b0e10;
+}
+
+@media (max-width: 1060px) {
+  .Header {
+    flex-direction: column;
+
+    padding-left: 2.4rem;
+    padding-right: 2.4rem;
+  }
+
+  .Menu {
+    padding: 0;
+  }
+}
+
+@media (max-width: 740px) {
+  .Section--hero h1 {
+    font-size: 2.8rem;
+  }
+
+  .Section--hero h2 {
+    font-size: 5.6rem;
+  }
+
+  .Section--hero h2 span {
+    background-position-y: 125%;
+  }
+
+  .Section--hero p {
+    font-size: 2rem;
+    line-height: 3.2rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .Menu {
+    justify-content: space-between;
+    gap: 0;
+
+    width: 100%;
+  }
+
+  .Section--hero h1 {
+    font-size: 2.4rem;
+  }
+
+  .Section--hero h2 {
+    font-size: 4.2rem;
+  }
+
+  .Section--hero h2 span {
+    background-position-y: 165%;
+  }
+
+  .Section--hero p {
+    font-size: 1.8rem;
+    line-height: 2.8rem;
+  }
+
+  .ConnectButton {
+    padding: 2.4rem 4.2rem;
+    margin-top: 8rem;
+  }
+}
